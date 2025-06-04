@@ -35,7 +35,7 @@ const post=sequelize.define("post",{
 
 
 app.get("/",(req,res)=>{
-   res.send("Welcome to Extech server configuration");
+   res.send("Welcome to Extech Api Server Configuration");
 })
 
 app.post("/send-data", async (req,res)=>{
