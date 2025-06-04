@@ -3,7 +3,7 @@ require("dotenv").config();
 const express=require("express");
 const app=express();
 
-const port=process.env.port || 422;
+const port=process.env.PORT;
 //Middleware to parse JSON bodies
 app.use(express.json());
 const {Sequelize,DataTypes}=require("sequelize");
