@@ -54,7 +54,7 @@ try {
   app.get("/getalldata", async(req,res)=>{
     
       try{
-        const alldata=await post.findAll();
+         const alldata=await post.findAll();
          res.json(alldata);
       } 
        catch (error) {
@@ -62,6 +62,14 @@ try {
    }
 
 });
+
+app.delete("/user/:id",(req,res)=>{
+  const id=req.params.id;
+
+  res.send(`you have deleted:${id}`);
+}
+   
+)
 
 app.listen(port,()=>{
   console.log(`Extech server app listens on : http://localhost:${port}`);
