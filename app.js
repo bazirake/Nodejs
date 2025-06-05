@@ -63,13 +63,28 @@ try {
 
 });
 
-app.delete("/user/:id",(req,res)=>{
-  const id=req.params.id;
+ app.delete("/user/:id", async (req,res)=>{
+    const id=req.params.id;
+    const ress= await post.findByPk(id);
+    try {
+        if(ress){
+           await ress.destroy();
+           res.send("record has been deleted successfully");
+          }
+          else{
+          res.status(404).send("Record not found")
+          }
+    } catch (error) {
 
-  res.send(`you have deleted:${id}`);
+      res.send("error:"+error);
+      
+    }
+      if (ress) {
+
+        
+      }
 }
-   
-)
+);
 
 app.listen(port,()=>{
   console.log(`Extech server app listens on : http://localhost:${port}`);
