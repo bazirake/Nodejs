@@ -70,21 +70,30 @@ try {
         if(ress){
            await ress.destroy();
            res.send("record has been deleted successfully");
-          }
-          else{
+        }
+        else{
           res.status(404).send("Record not found")
-          }
-    } catch (error) {
-
+        }
+    } catch(error) {
       res.send("error:"+error);
-      
     }
       if (ress) {
-
-        
       }
 }
 );
+
+app.put("/updates/:id",async(req,res)=>{
+    const idup=  req.params.id;
+    const {title,content}=req.body;
+    const [ddd]=await post.update({title:title,content:content},{where:{id:idup}});
+
+   if(ddd>0) {
+      res.send(`updated rows:${ddd}`);
+   }
+   else{
+    res.status(404).send("no data has been found to update");
+   }
+})
 
 app.listen(port,()=>{
   console.log(`Extech server app listens on : http://localhost:${port}`);
